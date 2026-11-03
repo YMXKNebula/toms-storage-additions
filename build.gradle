@@ -1,0 +1,55 @@
+plugins { id 'net.fabricmc.fabric-loom' version '1.16.3' }
+version = '1.0.0'
+group = 'dev.tsa'
+base { archivesName = 'toms-storage-additions-26.3' }
+repositories {
+    maven { url = uri('vendor/maven') }
+    if (file('../toms-persistent-cables/vendor/maven').exists()) { maven { url = uri('../toms-persistent-cables/vendor/maven') } }
+    maven { url = 'https://maven.fabricmc.net/' }
+    mavenCentral()
+}
+dependencies {
+    minecraft 'com.mojang:minecraft:26.3'
+    implementation 'net.fabricmc:fabric-loader:0.19.5'
+    implementation 'net.fabricmc.fabric-api:fabric-api:0.165.0+26.3'
+    implementation files('vendor/toms_storage_fabric-26.3-2.12.2.jar')
+    compileOnly files('vendor/cloth-config-fabric-26.3.159.jar')
+    if(project.hasProperty('tvsnCompat')) { runtimeOnly files(project.findProperty('tvsnJar') ?: 'vendor/toms-virtual-storage-network-26.3-0.2.2-dev.jar') }
+    if(project.hasProperty('stackCompat')) { runtimeOnly fileTree('vendor/compat') { include '*.jar' } }
+}
+java { toolchain { languageVersion = JavaLanguageVersion.of(25) }; withSourcesJar() }
+tasks.withType(JavaCompile).configureEach { options.release = 25; options.encoding = 'UTF-8' }
+sourceSets {
+    launcher { }
+    gametest {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+}
+dependencies { gametestImplementation('net.fabricmc.fabric-api:fabric-gametest-api-v1:4.0.34+3434d6d95d') { transitive = false } }
+loom {
+    mods { toms_storage_additions { sourceSet sourceSets.main }; tsa_gametest { sourceSet sourceSets.gametest } }
+    runs {
+        gametest {
+            server()
+            source sourceSets.gametest
+            def label=project.findProperty('testLabel') ?: 'native'
+            runDir "run/${label}"
+            vmArg '-Dfabric-api.gametest'
+            vmArg "-Dfabric-api.gametest.report-file=../../build/gametest-${label}-results.xml"
+            if(project.hasProperty('tvsnCompat')) { vmArg '-Dtsa.testVirtualWarehouse=true' }
+            vmArg '-Xmx2G'
+        }
+    }
+}
+tasks.named('runGametest', JavaExec) {
+    dependsOn tasks.named('launcherClasses')
+    classpath += sourceSets.launcher.output
+    mainClass.set('dev.tpc.testlauncher.ExpandedClasspathMain')
+}
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') { expand version: project.version }
+}
+tasks.named('jar') { from('LICENSE', 'LICENSE-Tom-Storage.txt', 'THIRD_PARTY_NOTICES.md') }
+tasks.named('sourcesJar') { from('LICENSE', 'LICENSE-Tom-Storage.txt', 'THIRD_PARTY_NOTICES.md') }

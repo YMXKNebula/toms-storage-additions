@@ -1,0 +1,9 @@
+{
+  "schemaVersion":1,
+  "id":"tsa_gametest",
+  "version":"1.0.0",
+  "name":"Storage Additions integration tests",
+  "environment":"server",
+  "entrypoints":{"fabric-gametest":["dev.tsa.integration.CurvatureHopperGameTests"]},
+  "depends":{"toms_storage_additions":"*"}
+}

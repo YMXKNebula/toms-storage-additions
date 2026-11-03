@@ -1,0 +1,7 @@
+{
+  "type":"minecraft:smithing_transform",
+  "template":"minecraft:netherite_upgrade_smithing_template",
+  "base":"toms_storage:basic_inventory_hopper",
+  "addition":"minecraft:netherite_ingot",
+  "result":{"id":"toms_storage_additions:curvature_storage_hopper","count":1}
+}

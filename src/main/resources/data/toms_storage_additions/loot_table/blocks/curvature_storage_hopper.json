@@ -1,0 +1,4 @@
+{
+  "type":"minecraft:block",
+  "pools":[{"rolls":1,"entries":[{"type":"minecraft:item","name":"toms_storage_additions:curvature_storage_hopper"}],"conditions":[{"condition":"minecraft:survives_explosion"}]}]
+}

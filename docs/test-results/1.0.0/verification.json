@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "mod": "toms_storage_additions",
+  "assets": [
+    {
+      "name": "toms-storage-additions-26.3-1.0.0.jar",
+      "sha256": "2f46eca4cc985f5c7e2242decfb670fda0e15c88d2a0e3f984aeb8f498bd34d7"
+    },
+    {
+      "name": "toms-storage-additions-26.3-1.0.0-sources.jar",
+      "sha256": "b60a7f73ab82c07fb72231c01720cd6d201e597cea166e7913cd2faf6247b1bf"
+    }
+  ],
+  "productionClassCount": 4,
+  "classHashes": {
+    "dev/tsa/Additions.class": "c298bf007eceb5115ee73fae33108b9cf55c4fdaea3e5ca188303d2869964e7c",
+    "dev/tsa/mixin/TvsnUnloadedConnectorMixin.class": "3101dda678ea43dbead3e1302cadd6d78a5e7f98c1c6d0c38c323b965389012d",
+    "dev/tsa/mixin/CurvatureHopperMixin.class": "7e79344508ed5f250afa2b89fd7f24fda277bbea36e5dfdd2fa900a872337b42",
+    "dev/tsa/mixin/AdditionsMixinPlugin.class": "f80335aa30accbfa5b0228a1f3f16d7e835e6bbb7abdc52414798cced4312a16"
+  },
+  "classBytesMatchTestedOutput": true,
+  "testCodeIncluded": false,
+  "environment": "*",
+  "tests": [
+    {
+      "profile": "native",
+      "tests": 18,
+      "failures": 0
+    },
+    {
+      "profile": "tvsn",
+      "tests": 18,
+      "failures": 0
+    },
+    {
+      "profile": "stack128",
+      "tests": 18,
+      "failures": 0
+    },
+    {
+      "profile": "stack256",
+      "tests": 18,
+      "failures": 0
+    }
+  ]
+}

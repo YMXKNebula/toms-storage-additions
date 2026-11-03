@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=down": {"model":"toms_storage_additions:block/curvature_storage_hopper"},
+    "facing=up": {"model":"toms_storage_additions:block/curvature_storage_hopper","x":180},
+    "facing=north": {"model":"toms_storage_additions:block/curvature_storage_hopper","x":90,"y":180},
+    "facing=south": {"model":"toms_storage_additions:block/curvature_storage_hopper","x":90},
+    "facing=east": {"model":"toms_storage_additions:block/curvature_storage_hopper","x":90,"y":270},
+    "facing=west": {"model":"toms_storage_additions:block/curvature_storage_hopper","x":90,"y":90}
+  }
+}
